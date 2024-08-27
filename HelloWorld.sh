@@ -1,2 +1,4 @@
 #!bin/bash
 ECHO "HELLO WORLD"
+ECHO "TRYING SECOND TIME"
+	
