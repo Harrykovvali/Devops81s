@@ -2,7 +2,7 @@
 userid=$(id -u)
 echo $userid
 
-if [ userid -ne 0 ]
+if [ $userid -ne 0 ]
 then
    echo " not a root user.exit"
    exit 1
