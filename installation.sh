@@ -22,3 +22,4 @@ then
          echo " git installation is successful"
 else
          echo "git is already installed,nothing to do"
+fi
