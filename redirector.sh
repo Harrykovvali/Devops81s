@@ -34,14 +34,14 @@ VALIDATE(){
 CHECK_ROOT
 for package in $@
 do 
-   dnf list installed $package
+   dnf list installed $package &>>$LOG_FILE
    if [ $? -ne 0 ]  
     then
        echo "$package is not installed, going to install it.." &>>$LOG_FILE
        dnf install $package -y &>>$LOG_FILE
-       VALIDATE $? "Installing package"
+       VALIDATE $? "Installing package" &>>$LOG_FILE
     else
-       echo "Git is already installed, nothing to do.."
+       echo "$package is already installed, nothing to do.."&>>$LOG_FILE
    fi
 done
 
