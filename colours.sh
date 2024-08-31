@@ -18,10 +18,10 @@ CHECK_ROOT(){
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo "$2 is...$R FAILED $N"
+        echo -e "$2 is...$R FAILED $N"
         exit 1
     else
-        echo "$2 is...$G SUCCESS $N"
+        echo -e "$2 is...$G SUCCESS $N"
     fi
 }
 
@@ -35,7 +35,7 @@ dnf list installed mysql
 
 if [ $? -ne 0 ]
 then
-    echo "MySQL is not installed...going to install"
+    echo -e  "MySQL is not installed...going to install $Y"
     dnf install mysql -y
     VALIDATE $? "Installing MySQL"
 else
