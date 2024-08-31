@@ -22,24 +22,16 @@ VALIDATE(){
 
 CHECK_ROOT
 
-dnf list installed git
 
-if [ $? -ne 0 ]
-then
-    echo "Git is not installed, going to install it.."
-    dnf install git -y
-    VALIDATE $? "Installing Git"
+for (package in S@)
+do 
+   dnf list installed $package
+   if [ $? -ne 0 ]
+    then
+    echo "$package is not installed, going to install it.."
+    dnf install @package -y
+    VALIDATE $? "Installing package"
 else
     echo "Git is already installed, nothing to do.."
 fi
 
-dnf list installed mysql
-
-if [ $? -ne 0 ]
-then
-    echo "MySQL is not installed...going to install"
-    dnf install mysql -y
-    VALIDATE $? "Installing MySQL"
-else
-    echo "MySQL is already installed..nothing to do"
-fi
