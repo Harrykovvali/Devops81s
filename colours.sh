@@ -22,7 +22,7 @@ VALIDATE(){
         exit 1
     else
         echo "$2 is...$G SUCCESS $N"
-    fis
+    fi
 }
 
 CHECK_ROOT
