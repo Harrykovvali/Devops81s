@@ -30,8 +30,18 @@ VALIDATE(){
         echo "$2 is...SUCCESS" &>>$LOG_FILE
     fi
 }
+USAGE(){
+echo -e "$R USAGE :: sudo sh 16-redirectors.sh package1 package 2 .. $N"
+exit 1
+}
 
 CHECK_ROOT
+
+if [ $# -eq 0 ]
+then 
+   USAGE
+fi
+
 for package in $@
 do 
    dnf list installed $package &>>$LOG_FILE
