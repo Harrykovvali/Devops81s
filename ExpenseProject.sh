@@ -1,7 +1,7 @@
 USERID=$(id -u)
 #echo $USERID
 
-CHECK_ROOT(){
+CHECK_ROOT()
 {
 	if [ $USERID -ne 0 ]
 	then
@@ -10,3 +10,4 @@ CHECK_ROOT(){
 
 }
 CHECK_ROOT
+
