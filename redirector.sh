@@ -3,7 +3,8 @@
 LOGS_FOLDER="/var/log/shell_script"
 SCRIPT_NAME=$(echo $0|cut -d "." -f1)
 TIMESTAMP=$(date +"%Y-%m-%d-%H-%M-%S")
-
+$LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME-$TIME_STAMP.log"
+mkdir -p $LOGS_FOLDER
 
 USERID=$(id -u)
 R="\e[31m"
@@ -13,7 +14,7 @@ N="\e[0m"
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "Please run this script with root priveleges"
+        echo "$R Please run this script with root priveleges $N" &>>LOG_FILE
         exit 1
     fi
 }
@@ -21,10 +22,10 @@ CHECK_ROOT(){
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo "$2 is...FAILED"
+        echo "$R $2 is...FAILED $N" &>>LOG_FILE
         exit 1
     else
-        echo "$2 is...SUCCESS"
+        echo "$2 is...SUCCESS" &>>LOG_FILE
     fi
 }
 
@@ -34,8 +35,8 @@ do
    dnf list installed $package
    if [ $? -ne 0 ]  
     then
-       echo "$package is not installed, going to install it.."
-       dnf install $package -y
+       echo "$package is not installed, going to install it.." &>>LOG_FILE
+       dnf install $package -y &>>LOG_FILE
        VALIDATE $? "Installing package"
     else
        echo "Git is already installed, nothing to do.."
