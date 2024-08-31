@@ -16,7 +16,7 @@ N="\e[0m"
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "$R Please run this script with root priveleges $N" &>>LOG_FILE
+        echo "$R Please run this script with root priveleges $N" 
         exit 1
     fi
 }
