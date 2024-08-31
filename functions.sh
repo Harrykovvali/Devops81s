@@ -23,15 +23,15 @@ VALIDATE(){
 CHECK_ROOT
 
 
-for (package in S@)
+for package in S@
 do 
    dnf list installed $package
-   if [ $? -ne 0 ]
+   if [ $? -ne 0 ]  
     then
-    echo "$package is not installed, going to install it.."
-    dnf install @package -y
-    VALIDATE $? "Installing package"
-else
-    echo "Git is already installed, nothing to do.."
-fi
-
+       echo "$package is not installed, going to install it.."
+       dnf install $package -y
+       VALIDATE $? "Installing package"
+    else
+       echo "Git is already installed, nothing to do.."
+   fi
+done
