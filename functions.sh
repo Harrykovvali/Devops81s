@@ -23,7 +23,7 @@ VALIDATE(){
 CHECK_ROOT
 
 
-for package in S@
+for package in $@
 do 
    dnf list installed $package
    if [ $? -ne 0 ]  
