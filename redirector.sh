@@ -49,8 +49,8 @@ do
         exit 1&>>$LOG_FILE
    if [ $? -ne 0 ]  
     then
-       echo "$package is not installed, going to install it.." | tee -a &>>$LOG_FILE
-       dnf install $package -y | tee -a &>>$LOG_FILEE
+       echo "$package is not installed, going to install it.." | tee -a $LOG_FILE
+       dnf install $package -y | tee -a $LOG_FILEE
        VALIDATE $? "Installing package" &>>$LOG_FILE
     else
        echo "$package is already installed, nothing to do.."&>>$LOG_FILE
