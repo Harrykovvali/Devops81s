@@ -27,7 +27,6 @@ VALIDATE(){
 
 CHECK_ROOT
 
-dnf list installed git
 
 
 
@@ -35,9 +34,9 @@ dnf list installed mysql
 
 if [ $? -ne 0 ]
 then
-    echo -e  "MySQL is not installed...going to install $Y"
+    echo -e  "$Y MySQL is not installed...going to install $N"
     dnf install mysql -y
     VALIDATE $? "Installing MySQL"
 else
-    echo "MySQL is already installed..nothing to do"
+    echo -e  " $R MySQL is already installed..nothing to do $N"
 fi
