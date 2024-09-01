@@ -25,24 +25,36 @@ VALIDATE(){
     if [ $1 -ne 0 ]
     then
         echo "$2 is...FAILED"
-        exit 1
+        exit 1 
     else
         echo "$2 is...SUCCESS"
     fi
 }
+dnf install mysql-server -y &>>$LOG_FILE
+VALIDATE $? "Installing MySQL Server"
 
-for package in $@
-do 
- dnf list installed $package
- if [ $? -ne 0 ]  
-    then
-       echo "$package is not installed, going to install it.."
-       dnf install $package -y
-       VALIDATE $? "Installing package"
-    else
-       echo "Git is already installed, nothing to do.."
-  fi
-done
+systemctl enable mysqld &>>$LOG_FILE
+VALIDATE $? "Enabled MySQL Server"
+
+systemctl start mysqld &>>$LOG_FILE
+VALIDATE $? "Started MySQL server"
+
+mysql -h mysql.daws81s.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
+
+if [ $? -ne 0 ]
+then
+    echo "MySQL root password is not setup, setting now" &>>$LOG_FILE
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "Setting UP root password"
+else
+    echo -e "MySQL root password is already setup...$Y SKIPPING $N" | tee -a $LOG_FILE
+fi
+
+
+
+
+
+
 
 
 
