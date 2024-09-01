@@ -21,6 +21,7 @@ VALIDATE(){
     if [ $1 -ne 0 ]
     then
         echo -e "$2 is...$R FAILED $N"  | tee -a $LOG_FILE
+        echo $2
         exit 1
     else
         echo -e "$2 is... $G SUCCESS $N" | tee -a $LOG_FILE
@@ -40,7 +41,7 @@ VALIDATE $? "Enabled MySQL Server"
 systemctl start mysqld &>>$LOG_FILE
 VALIDATE $? "Started MySQL server"
 
-mysql -h mysql.daws81s.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
+mysql -h mysql.trydevops.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
 
 if [ $? -ne 0 ]
 then
