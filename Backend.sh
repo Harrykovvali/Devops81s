@@ -62,7 +62,7 @@ cd /app
 npm install &>>$LOG_FILE
 VALIDATE $? " checking installation of npm"
 
-cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
+cp /home/ec2-user/Devops81s/backend.service /etc/systemd/system/backend.service
 
 # load the data before running backend
 
