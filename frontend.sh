@@ -34,7 +34,7 @@ echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
 CHECK_ROOT
 
-dnf install nginx &>>LOG_FILE
+dnf install nginx &>>$LOG_FILE
 VALIDATE $? "Installing nginx"
 
 systemctl enable nginx &>>$LOG_FILE
