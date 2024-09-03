@@ -35,7 +35,8 @@ echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 CHECK_ROOT
 
 dnf install nginx &>>LOG_FILE
-VALIDATE$? "Installing nginx"systemctl enable nginx &>>$LOG_FILE
+VALIDATE$? "Installing nginx"s
+ystemctl enable nginx &>>$LOG_FILE
 VALIDATE $? "Enable Nginx"
 
 systemctl start nginx &>>$LOG_FILE
@@ -50,9 +51,9 @@ VALIDATE $? "downloading  the frontend code"
 
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>>$LOG_FILE
-VALIDATE $? "Extract frontend code
-"
-cp /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf
+VALIDATE $? "Extract frontend code"
+
+cp /home/ec2-user/Devops81s/expense.conf /etc/nginx/default.d/expense.conf
 VALIDATE $? "Copied expense conf"
 
 systemctl restart nginx &>>$LOG_FILE
