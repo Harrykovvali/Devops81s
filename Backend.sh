@@ -72,7 +72,7 @@ cp /home/ec2-user/Devops81s/backend.service /etc/systemd/system/backend.service
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing MySQL Client"
 
-mysql -h mysql.daws81s.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h mysql.trydevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Schema loading"
 
 systemctl daemon-reload &>>$LOG_FILE
