@@ -20,4 +20,4 @@ else
 fi
 sudo su - postgres
 DATA_DIRECTORY=$(psql -U postgres -c "SHOW DATA_DIRECTORY")
-
+echo "$DATA_DIRECTORY"
